@@ -8,17 +8,16 @@ import AdditionalInfoHeaderText from "../components/AdditionalInfoHeaderText";
 import AdditionalInfoItems from "../components/AdditionalInfoItems";
 
 const WeatherPage = ({ weatherData }) => {
-  console.log(weatherData);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <HeaderText />
         <SearchBar />
-        <CurrentWeatherCard />
+        <CurrentWeatherCard weatherData={weatherData} />
         <HourlyForecastHeaderText />
-        <HourlyForecastItems />
+        <HourlyForecastItems weatherData={weatherData} />
         <AdditionalInfoHeaderText />
-        <AdditionalInfoItems />
+        <AdditionalInfoItems weatherData={weatherData} />
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,18 +1,24 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { weatherType } from "../utils/weatherType";
 
-const CurrentWeatherCard = () => {
+const CurrentWeatherCard = ({ weatherData }) => {
+  const { main, weather } = weatherData.list[0];
+  const { temp } = main;
+  const { description } = weather[0];
+  const { name } = weatherData.city;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.locationText}>London</Text>
-      <Text style={styles.temperatureText}>17°C</Text>
+      <Text style={styles.locationText}>{name}</Text>
+      <Text style={styles.temperatureText}>{Math.round(temp)}°C</Text>
       <Feather
         style={styles.weatherIcon}
-        name="cloud"
+        name={weatherType[weather[0].main].icon}
         size={64}
         color="black"
       />
-      <Text style={styles.descriptionText}>few clouds</Text>
+      <Text style={styles.descriptionText}>{description}</Text>
     </View>
   );
 };

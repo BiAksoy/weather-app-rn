@@ -7,7 +7,7 @@ const HourlyForecastItem = (props) => {
     <View style={styles.container}>
       <Text style={styles.time}>{time}</Text>
       <Feather style={styles.icon} name={icon} size={32} color="black" />
-      <Text style={styles.temp}>{temp}</Text>
+      <Text style={styles.temp}>{temp}°C</Text>
     </View>
   );
 };
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   },
   temp: {
     marginTop: 10,
+    fontSize: 16,
   },
 });
 
