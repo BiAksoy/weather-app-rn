@@ -1,5 +1,5 @@
 import { SafeAreaView, StyleSheet, ScrollView } from "react-native";
-import HeaderText from "../components/HeaderText";
+import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import CurrentWeatherCard from "../components/CurrentWeatherCard";
 import HourlyForecastHeaderText from "../components/HourlyForecastHeaderText";
@@ -7,12 +7,16 @@ import HourlyForecastItems from "../components/HourlyForecastItems";
 import AdditionalInfoHeaderText from "../components/AdditionalInfoHeaderText";
 import AdditionalInfoItems from "../components/AdditionalInfoItems";
 
-const WeatherPage = ({ weatherData }) => {
+const WeatherPage = ({
+  weatherData,
+  fetchWeatherByCurrentLocation,
+  fetchWeatherBySearchedLocation,
+}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <HeaderText />
-        <SearchBar />
+        <Header handleRefresh={fetchWeatherByCurrentLocation} />
+        <SearchBar onSearch={fetchWeatherBySearchedLocation} />
         <CurrentWeatherCard weatherData={weatherData} />
         <HourlyForecastHeaderText />
         <HourlyForecastItems weatherData={weatherData} />

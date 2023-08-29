@@ -9,10 +9,24 @@ export const useGetWeather = () => {
   const [lat, setLat] = useState([]);
   const [lon, setLon] = useState([]);
 
-  const fetchWeather = async () => {
+  const fetchWeatherByCurrentLocation = async () => {
     try {
       const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&APPID=${API_KEY}`
+      );
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchWeatherBySearchedLocation = async (location) => {
+    try {
+      const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&APPID=${API_KEY}`
       );
       const data = await response.json();
       setWeather(data);
@@ -33,8 +47,15 @@ export const useGetWeather = () => {
       let location = await Location.getCurrentPositionAsync({});
       setLat(location.coords.latitude);
       setLon(location.coords.longitude);
-      await fetchWeather();
+      await fetchWeatherByCurrentLocation();
     })();
   }, [lat, lon]);
-  return [isLoading, error, weather];
+
+  return [
+    isLoading,
+    error,
+    weather,
+    fetchWeatherByCurrentLocation,
+    fetchWeatherBySearchedLocation,
+  ];
 };
