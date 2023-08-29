@@ -7,12 +7,16 @@ const HourlyForecastItems = ({ weatherData }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={weatherData.list.slice(0, 8)}
+        data={weatherData.list.slice(0, 7)}
         keyExtractor={(item) => item.dt.toString()}
         renderItem={({ item }) => {
           return (
             <HourlyForecastItem
-              time={moment.unix(item.dt).format("HH")}
+              time={moment
+                .unix(item.dt)
+                .utc()
+                .add(weatherData.city.timezone, "s")
+                .format("HH")}
               icon={weatherType[item.weather[0].main].icon}
               temp={Math.round(item.main.temp)}
             />
