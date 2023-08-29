@@ -7,7 +7,7 @@ const HourlyForecastItems = ({ weatherData }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={weatherData.list.slice(0, 7)}
+        data={weatherData.list.slice(0, 8)}
         keyExtractor={(item) => item.dt.toString()}
         renderItem={({ item }) => {
           return (
