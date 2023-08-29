@@ -19,7 +19,7 @@ const AdditionalInfoItems = ({ weatherData }) => {
         <AdditionalInfoItem
           icon="wind"
           label="Wind Speed"
-          value={`${Math.round(speed)} km/h`}
+          value={`${Math.round(speed * 3.6)} km/h`}
         />
         <AdditionalInfoItem
           icon="umbrella"
