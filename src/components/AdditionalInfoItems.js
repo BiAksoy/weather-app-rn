@@ -6,7 +6,7 @@ const AdditionalInfoItems = ({ weatherData }) => {
   const { main } = weatherData.list[0];
   const { humidity, pressure } = main;
   const { speed } = weatherData.list[0].wind;
-  const { sunrise, sunset } = weatherData.city;
+  const { sunrise, sunset, timezone } = weatherData.city;
 
   return (
     <View style={styles.container}>
@@ -31,12 +31,12 @@ const AdditionalInfoItems = ({ weatherData }) => {
         <AdditionalInfoItem
           icon="sunrise"
           label="Sunrise"
-          value={moment.unix(sunrise).format("HH:mm")}
+          value={moment.unix(sunrise).utc().add(timezone, "s").format("HH:mm")}
         />
         <AdditionalInfoItem
           icon="sunset"
           label="Sunset"
-          value={moment.unix(sunset).format("HH:mm")}
+          value={moment.unix(sunset).utc().add(timezone, "s").format("HH:mm")}
         />
       </View>
     </View>
