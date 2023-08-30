@@ -19,6 +19,7 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Search Location"
         value={searchQuery}
         onChangeText={setSearchQuery}
+        onSubmitEditing={handleSearch}
       />
       <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
         <Feather name="search" size={24} color="black" />
