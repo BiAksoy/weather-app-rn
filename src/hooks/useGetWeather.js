@@ -28,6 +28,9 @@ export const useGetWeather = () => {
       const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&APPID=${API_KEY}`
       );
+      if (!response.ok) {
+        return;
+      }
       const data = await response.json();
       setWeather(data);
     } catch (error) {
